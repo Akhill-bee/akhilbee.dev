@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Web Playground</title>
+  <style>
+    body {
+      background-color: #f6f6f6;
+      font-family: system-ui, sans-serif;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    /* Responsive Grid like Neal.fun */
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .project-card {
+      background: #ffffff;
+      border-radius: 12px;
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    }
+
+    .project-thumbnail {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      background-color: #eee;
+    }
+
+    .project-info {
+      padding: 16px;
+    }
+
+    .project-title {
+      font-weight: bold;
+      font-size: 1.1rem;
+      margin-bottom: 6px;
+    }
+
+    .project-desc {
+      font-size: 0.9rem;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>My Web Projects</h1>
+
+  <div class="project-grid">
+    
+    <a href="./canvas-draw/" class="project-card">
+      <img src="assets/canvas-thumb.png" alt="Canvas Draw" class="project-thumbnail">
+      <div class="project-info">
+        <div class="project-title">Canvas Draw</div>
+        <div class="project-desc">Interactive pixel canvas built with Vanilla JS.</div>
+      </div>
+    </a>
+
+    <a href="https://unwordle.onrender.com" class="project-card">
+      <img src="assets/wordle-thumb.png" alt="UnWordle" class="project-thumbnail">
+      <div class="project-info">
+        <div class="project-title">UnWordle Solver</div>
+        <div class="project-desc">Python-powered smart backend for solving Wordle puzzles.</div>
+      </div>
+    </a>
+
+  </div>
+
+</body>
+</html>
