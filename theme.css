@@ -1,0 +1,40 @@
+/* home.akhilbee.dev/theme.css */
+
+:root {
+  /* Light Mode (Default) */
+  --heading-color: #FF6B35;
+  --subheading-color: #F7C59F;
+  --text-color: #000000;
+  --bg-color: #EFEFD0;
+  
+  /* Additional UI elements derived from your palette */
+  --card-bg: #FFFFFF;
+  --border-color: #F7C59F;
+}
+
+body.dark-mode {
+  /* Dark Mode Theme */
+  --heading-color: #FFFFFF; /* Or #1A659E depending on preferred contrast */
+  --subheading-color: #75BBF1;
+  --text-color: #FFFFFF;
+  --bg-color: #004E89;
+  
+  /* Additional UI elements for dark mode */
+  --card-bg: #11385b;
+  --border-color: #1A659E;
+}
+
+/* Base styles automatically applied to all pages */
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--heading-color);
+}
+
+.subheading, p.subtitle, h3.subheading {
+  color: var(--subheading-color);
+}
