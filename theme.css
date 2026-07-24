@@ -1,27 +1,31 @@
 /* home.akhilbee.dev/theme.css */
 
 :root {
-  /* Light Mode (Default) */
+  /* Light Mode Palette */
+  --bg-color: #EFEFD0;
+  --text-color: #000000;
   --heading-color: #FF6B35;
   --subheading-color: #F7C59F;
-  --text-color: #000000;
-  --bg-color: #EFEFD0;
-  
-  /* Additional UI elements derived from your palette */
   --card-bg: #FFFFFF;
   --border-color: #F7C59F;
+
+  /* Tag colors for Light Mode */
+  --tag-bg: #FF6B35;
+  --tag-text: #FFFFFF;
 }
 
 body.dark-mode {
-  /* Dark Mode Theme */
-  --heading-color: #FFFFFF; /* Or #1A659E depending on preferred contrast */
-  --subheading-color: #75BBF1;
-  --text-color: #FFFFFF;
+  /* Dark Mode Palette */
   --bg-color: #004E89;
-  
-  /* Additional UI elements for dark mode */
-  --card-bg: #11385b;
+  --text-color: #FFFFFF;
+  --heading-color: #75BBF1;
+  --subheading-color: #1A659E;
+  --card-bg: #003a66;
   --border-color: #1A659E;
+
+  /* Tag colors for Dark Mode (Dark background with light text, or vice versa) */
+  --tag-bg: #1A659E;   /* Darker blue chip */
+  --tag-text: #FFFFFF; /* White text stays crisp and readable */
 }
 
 /* Base styles automatically applied to all pages */
