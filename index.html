@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>akhilbee.dev</title>
+  
+  <script src="https://home.akhilbee.dev/footer.js" defer></script>
+
   <style>
     * {
       box-sizing: border-box;
@@ -15,9 +18,22 @@
       background-color: #0f172a;
       color: #f8fafc;
       font-family: system-ui, -apple-system, sans-serif;
+      
+      /* Flexbox layout to push footer to bottom */
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      margin: 0;
+      padding: 0;
+    }
+
+    .main-wrapper {
+      width: 100%;
       max-width: 1000px;
       margin: 0 auto;
       padding: 60px 20px;
+      box-sizing: border-box;
+      flex: 1; /* Pushes the footer to the bottom */
     }
 
     header {
@@ -87,34 +103,44 @@
       border-radius: 9999px;
       align-self: flex-start;
     }
+
+    /* Footer styling hook */
+    akhilbee-footer {
+      width: 100%;
+      margin-top: auto;
+    }
   </style>
 </head>
 <body>
 
-  <header>
-    <h1>akhilbee.dev</h1>
-    <p class="subtitle">The home of my projects</p>
-  </header>
+  <div class="main-wrapper">
+    <header>
+      <h1>akhilbee.dev</h1>
+      <p class="subtitle">The home of my projects</p>
+    </header>
 
-  <main class="project-grid">
+    <main class="project-grid">
 
-    <a href="https://unwordle.akhilbee.dev/" target="_blank" class="project-card">
-      <div>
-        <div class="project-title">Unwordle Solver</div>
-        <div class="project-desc">An iterative Python & Flask Wordle solver powered by Google Ngrams data.</div>
-      </div>
-      <span class="tag">Python</span>
-    </a>
+      <a href="https://unwordle.akhilbee.dev/" target="_blank" class="project-card">
+        <div>
+          <div class="project-title">Unwordle Solver</div>
+          <div class="project-desc">An iterative Python & Flask Wordle solver powered by Google Ngrams data.</div>
+        </div>
+        <span class="tag">Python</span>
+      </a>
 
-    <a href="https://calculustools.akhilbee.dev/" target="_blank" class="project-card">
-      <div>
-        <div class="project-title">Calculus Tools</div>
-        <div class="project-desc">A suite for solving derivatives, integrals, implicit differentiation, and Taylor expansions with live LaTeX editing.</div>
-      </div>
-      <span class="tag">Python / LaTEX</span>
-    </a>
+      <a href="https://calculustools.akhilbee.dev/" target="_blank" class="project-card">
+        <div>
+          <div class="project-title">Calculus Tools</div>
+          <div class="project-desc">A suite for solving derivatives, integrals, implicit differentiation, and Taylor expansions with live LaTeX editing.</div>
+        </div>
+        <span class="tag">Python / LaTeX</span>
+      </a>
 
-  </main>
+    </main>
+  </div>
+
+  <akhilbee-footer></akhilbee-footer>
 
 </body>
 </html>
