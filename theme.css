@@ -23,7 +23,7 @@ body.dark-mode {
   --card-bg: #003a66;
   --border-color: #1A659E;
 
-  /* Tag colors for Dark Mode (Dark background with light text, or vice versa) */
+  /* Tag colors for Dark Mode */
   --tag-bg: #1A659E;   /* Darker blue chip */
   --tag-text: #FFFFFF; /* White text stays crisp and readable */
 }
@@ -41,4 +41,17 @@ h1, h2, h3, h4, h5, h6 {
 
 .subheading, p.subtitle, h3.subheading {
   color: var(--subheading-color);
+}
+
+/* Badge / Tag Styles */
+.tag {
+  display: inline-block;
+  background-color: var(--tag-bg);
+  color: var(--tag-text);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  align-self: flex-start;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
