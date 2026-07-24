@@ -65,7 +65,7 @@ class AkhilbeeFooter extends HTMLElement {
         </div>
 
         <div class="right-content">
-          <a href="https://akhilbee.dev">home.akhilbee.dev</a>
+          <a href="https://home.akhilbee.dev">home.akhilbee.dev</a>
         </div>
       </footer>
     `;
