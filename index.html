@@ -173,21 +173,12 @@
         <span class="tag">Python</span>
       </a>
 
-      <a href="https://calculustools.akhilbee.dev/" target="_blank" class="project-card">
-        <div>
-          <div class="project-title">Calculus Tools</div>
-          <div class="project-desc">A suite for solving derivatives, integrals, implicit differentiation, and Taylor expansions with live LaTeX editing.</div>
-        </div>
-        <span class="tag">Python / LaTeX</span>
-      </a>
-
     </main>
   </div>
 
   <akhilbee-footer></akhilbee-footer>
 
   <script>
-    // --- Dark / Light Mode Switcher ---
     const themeToggleBtn = document.getElementById('theme-toggle');
 
     function applyTheme(theme) {
@@ -198,7 +189,6 @@
       }
     }
 
-    // Check saved local storage theme or system preference
     const savedTheme = localStorage.getItem('theme');
     const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
@@ -208,7 +198,6 @@
       applyTheme('light');
     }
 
-    // Toggle event listener
     themeToggleBtn?.addEventListener('click', () => {
       const isDarkMode = document.body.classList.contains('dark-mode');
       const newTheme = isDarkMode ? 'light' : 'dark';
