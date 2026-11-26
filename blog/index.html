@@ -1,1 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>akhilbee.dev</title>
 
+  <link rel="stylesheet" href="https://home.akhilbee.dev/theme.css">
+
+  <script src="https://home.akhilbee.dev/footer.js" defer></script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-color, #0f172a);
+      color: var(--text-color, #f8fafc);
+      font-family: system-ui, -apple-system, sans-serif;
+      transition: background-color 0.3s ease, color 0.3s ease;
+
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      margin: 0;
+      padding: 0;
+    }
+
+    .main-wrapper {
+      width: 100%;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 60px 20px;
+      flex: 1; /* Pushes the footer down when content is short */
+    }
+
+    header {
+      margin-bottom: 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .header-text {
+      text-align: left;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      margin-bottom: 6px;
+      color: var(--heading-color, #f1f5f9);
+    }
+
+    p.subtitle {
+      color: var(--subheading-color, #94a3b8);
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+
+    /* Circular Theme Toggle Button */
+    .theme-toggle-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--card-bg, #1e293b);
+      border: 1px solid var(--border-color, #334155);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s ease, background-color 0.3s ease, border-color 0.3s ease;
+      padding: 0;
+      color: var(--text-color, #f8fafc);
+    }
+
+    .theme-toggle-btn:hover {
+      transform: scale(1.08);
+    }
+
+    .theme-svg {
+      width: 22px;
+      height: 22px;
+      fill: currentColor;
+    }
+
+    /* ---------- Blog ---------- */
+    #post-date {
+      margin-bottom: 8px;
+    }
+
+    #post-title {
+      font-size: 2rem;
+      margin-bottom: 24px;
+    }
+
+    #post-body p {
+      line-height: 1.7;
+      margin-bottom: 1em;
+      max-width: 70ch;
+    }
+
+    .comic {
+      display: block;
+      max-width: 100%;
+      margin: 0 auto;
+      border-radius: 8px;
+    }
+
+    .pdf {
+      width: 100%;
+      height: 80vh;
+      border: 1px solid var(--border-color, #334155);
+      border-radius: 8px;
+    }
+
+    #post-body a {
+      color: var(--heading-color, #38bdf8);
+    }
+
+    .post-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-top: 40px;
+    }
+
+    .post-nav button {
+      background: var(--card-bg, #1e293b);
+      color: var(--text-color, #f8fafc);
+      border: 1px solid var(--border-color, #334155);
+      border-radius: 8px;
+      padding: 10px 16px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .post-nav button:hover:not(:disabled) {
+      transform: translateY(-2px);
+      border-color: var(--heading-color, #38bdf8);
+    }
+
+    .post-nav button:disabled {
+      opacity: 0.4;
+      cursor: default;
+    }
+
+    akhilbee-footer {
+      width: 100%;
+      margin-top: auto;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="main-wrapper">
+    <header>
+      <div class="header-text">
+        <h1>akhilbee.dev</h1>
+        <p class="subtitle">The archive of my mind</p>
+      </div>
+
+      <button id="theme-toggle" class="theme-toggle-btn" type="button" aria-label="Toggle dark/light mode">
+        <svg class="theme-svg" viewBox="0 0 24 24">
+          <path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.82.89-3.42 2.26-4.4C12.92 3.04 12.46 3 12 3z"/>
+        </svg>
+      </button>
+    </header>
+
+    <main>
+      <article id="post">
+        <p id="post-date" class="subtitle"></p>
+        <h2 id="post-title"></h2>
+        <div id="post-body"></div>
+      </article>
+
+      <nav class="post-nav" aria-label="Post navigation">
+        <button id="first" type="button">⏮ First</button>
+        <button id="prev" type="button">‹ Prev</button>
+        <button id="next" type="button">Next ›</button>
+        <button id="latest" type="button">Latest ⏭</button>
+      </nav>
+    </main>
+  </div>
+
+  <akhilbee-footer></akhilbee-footer>
+
+  <script>
+    /* ---------- Theme toggle (unchanged) ---------- */
+    const themeToggleBtn = document.getElementById('theme-toggle');
+
+    function applyTheme(theme) {
+      if (theme === 'dark') {
+        document.body.classList.add('dark-mode');
+      } else {
+        document.body.classList.remove('dark-mode');
+      }
+    }
+
+    const savedTheme = localStorage.getItem('theme');
+    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+    if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+      applyTheme('dark');
+    } else {
+      applyTheme('light');
+    }
+
+    themeToggleBtn?.addEventListener('click', () => {
+      const isDarkMode = document.body.classList.contains('dark-mode');
+      const newTheme = isDarkMode ? 'light' : 'dark';
+      applyTheme(newTheme);
+      localStorage.setItem('theme', newTheme);
+    });
+
+    /* ---------- Blog ---------- */
+    const $ = id => document.getElementById(id);
+    const IMG = ['png', 'jpg', 'jpeg', 'gif', 'webp', 'svg'];
+    const extOf = f => f.split('.').pop().toLowerCase();
+    const urlOf = p => `posts/${encodeURIComponent(p.file)}`;
+    let posts = [];
+
+    async function init() {
+      try {
+        const res = await fetch('posts/manifest.json');
+        posts = (await res.json()).sort((a, b) => a.date.localeCompare(b.date));
+      } catch (e) {
+        posts = [];
+      }
+      if (!posts.length) {
+        $('post-title').textContent = 'No posts yet';
+        $('post-body').textContent = 'Add a file to the posts folder and run build.py.';
+        document.querySelectorAll('.post-nav button').forEach(b => b.disabled = true);
+        return;
+      }
+      show();
+    }
+
+    function currentPost() {
+      const h = location.hash.slice(1);
+      return posts.find(p => p.date === h) || posts[posts.length - 1];
+    }
+
+    async function show() {
+      const p = currentPost();
+      const i = posts.indexOf(p);
+      const url = urlOf(p);
+      const ext = extOf(p.file);
+      const body = $('post-body');
+      let title = p.title || p.date;
+      body.replaceChildren();
+
+      try {
+        if (ext === 'txt' || ext === 'md') {
+          const text = (await (await fetch(url)).text()).trim();
+          const [first, ...rest] = text.split('\n');
+          title = first;
+          rest.join('\n').trim().split(/\n\s*\n/).forEach(para => {
+            const el = document.createElement('p');
+            el.textContent = para;
+            body.appendChild(el);
+          });
+        } else if (IMG.includes(ext)) {
+          const img = document.createElement('img');
+          img.src = url;
+          img.alt = title;
+          img.title = p.alt || '';   // optional hover text, like xkcd
+          img.className = 'comic';
+          body.appendChild(img);
+        } else if (ext === 'pdf') {
+          const frame = document.createElement('iframe');
+          frame.className = 'pdf';
+          frame.src = url;
+          frame.title = title;
+          const para = document.createElement('p');
+          const link = document.createElement('a');
+          link.href = url;
+          link.target = '_blank';
+          link.textContent = 'Open PDF in a new tab';
+          para.appendChild(link);
+          body.append(frame, para);
+        } else {
+          const link = document.createElement('a');
+          link.href = url;
+          link.textContent = `Download ${p.file}`;
+          body.appendChild(link);
+        }
+      } catch (e) {
+        body.textContent = 'Could not load this post.';
+      }
+
+      $('post-date').textContent =
+        new Date(p.date + 'T00:00:00').toLocaleDateString(undefined, { dateStyle: 'long' });
+      $('post-title').textContent = title;
+      document.title = `${title} · akhilbee.dev`;
+
+      $('first').disabled = $('prev').disabled = i === 0;
+      $('next').disabled = $('latest').disabled = i === posts.length - 1;
+
+      // Preload neighboring comics so Next/Prev feels instant
+      [posts[i - 1], posts[i + 1]].forEach(n => {
+        if (n && IMG.includes(extOf(n.file))) new Image().src = urlOf(n);
+      });
+    }
+
+    const idx = () => posts.indexOf(currentPost());
+    const go = i => { location.hash = posts[i].date; };
+
+    $('first').onclick  = () => go(0);
+    $('prev').onclick   = () => go(idx() - 1);
+    $('next').onclick   = () => go(idx() + 1);
+    $('latest').onclick = () => go(posts.length - 1);
+
+    document.addEventListener('keydown', e => {
+      if (!posts.length) return;
+      if (e.key === 'ArrowLeft'  && idx() > 0)                $('prev').click();
+      if (e.key === 'ArrowRight' && idx() < posts.length - 1) $('next').click();
+    });
+
+    window.addEventListener('hashchange', show);
+    init();
+  </script>
+</body>
+</html>
